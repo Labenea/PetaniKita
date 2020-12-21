@@ -1,1 +1,1 @@
-Petanikita is a small project for assignment
+Petanikita is a small project
