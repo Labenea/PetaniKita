@@ -1,0 +1,11 @@
+import { Tooltip, Toast, Popover, Dropdown } from "bootstrap";
+import "@fortawesome/fontawesome-free/js/fontawesome";
+import "@fortawesome/fontawesome-free/js/solid";
+import "@fortawesome/fontawesome-free/js/regular";
+import "@fortawesome/fontawesome-free/js/brands";
+import "./script/addbarang.js";
+import "./script/modal.js";
+import "./script/main.js";
+import "./script/profile.js";
+import "./script/carousel.js";
+import "./script/register.js";
