@@ -4,7 +4,28 @@
         $a = new HomeController;
         $a->index();
     });
+    Route::set('search', function(){
+        $a = new HomeController;
+        $a->index();
+    });
+    Route::set('get/cart', function(){
+        $a = new UsersController;
+        $a->cartCount();
+    });
 
+    Route::set('add/cart', function(){
+        $a = new UsersController;
+        $a->addCart();
+    });
+
+    Route::set('cart', function(){
+        $a = new UsersController;
+        $a->cart();
+    });
+    Route::set('remove/cart', function(){
+        $a = new UsersController;
+        $a->removeCart();
+    });
     Route::set('login',function(){
         $a = new UsersController;
         $a->login();
@@ -34,6 +55,10 @@
         $a = new UsersController;
         $a->deleteUser();
     });
+    Route::set('product',function(){
+        $a = new productController;
+        $a->detailProduct();
+    });
     Route::set('admin',function(){
         
         $a = new AdminController;
@@ -53,6 +78,21 @@
         
         $a = new UsersController;
         $a->addProduct();
+    });
+    Route::set('cart/checkout',function(){
+        
+        $a = new UsersController;
+        $a->checkOut();
+    });
+    Route::set('user/product',function(){
+        
+        $a = new UsersController;
+        $a->userProduct();
+    });
+    Route::set('user/pesanan',function(){
+        
+        $a = new UsersController;
+        $a->userPesanan();
     });
     Route::set('admin/carousel',function(){
         

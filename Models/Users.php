@@ -89,6 +89,119 @@ class Users{
 
     }
 
+    public function getCartCount($id){
+        $this->db->query("SELECT COUNT(id_user) as jumlah FROM keranjang WHERE id_user = :id");
+        $this->db->bind(":id",$id);
+        if($row = $this->db->single()){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+    
+    public function checkDuplicate($data){
+        $this->db->query("SELECT id_keranjang,banyak, (SELECT COUNT(id_keranjang) FROM keranjang WHERE id_user = :id_user2 AND id_hasiltani = :id_barang2) AS jumlah From keranjang WHERE id_user = :id_user AND id_hasiltani = :id_hasil");
+        $this->db->bind(":id_user",$data['user_id']);
+        $this->db->bind(":id_hasil",$data['id_barang']);
+        $this->db->bind(":id_user2",$data['user_id']);
+        $this->db->bind(":id_barang2",$data['id_barang']);
+        $row = $this->db->single();
+        if($row->jumlah > 0){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function updateCart($data){
+        $this->db->query("UPDATE keranjang SET banyak = banyak + :jumlah WHERE id_keranjang = :id ");
+        $this->db->bind(":jumlah",1);
+        $this->db->bind(":id",(int)$data['id_keranjang']);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getCart($data){
+        $this->db->query("SELECT keranjang.* , hs.id_user as id_penjual , hs.*, us.username as username_penjual FROM keranjang INNER JOIN hasil_tani AS hs ON keranjang.id_hasiltani = hs.id_hasilTani INNER JOIN user AS us ON hs.id_user = us.id_user WHERE keranjang.id_user = :id ");
+        $this->db->bind(':id',$data);
+        if($row = $this->db->resultSet()){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function userProduct($data){
+        $this->db->query("SELECT * FROM hasil_tani WHERE hasil_tani.id_user = :id");
+        $this->db->bind(':id',$data);
+        if($row = $this->db->resultSet()){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+
+    public function userPesanan($data){
+        $this->db->query("SELECT * FROM detail_transaksi INNER JOIN transaksi ON detail_transaksi.id_transaksi = transaksi.id_transaksi INNER JOIN hasil_tani ON detail_transaksi.id_barang = hasil_tani.id_hasilTani WHERE detail_transaksi.id_pembeli = :id");
+        $this->db->bind(':id',$data);
+        if($row = $this->db->resultSet()){
+            return $row;
+        }else{
+            return false;
+        }
+    }
+    public function checkOut($id)
+    {
+        $this->db->query("SELECT keranjang.* , hs.id_user as id_penjual , hs.*, us.username as username_penjual FROM keranjang INNER JOIN hasil_tani AS hs ON keranjang.id_hasiltani = hs.id_hasilTani INNER JOIN user AS us ON hs.id_user = us.id_user WHERE keranjang.id_user = :id ");
+        $this->db->bind(":id",$id);
+        if($res = $this->db->resultSet()){
+            $this->db->query("INSERT INTO transaksi (id_transaksi) value (:id)");
+            $this->db->bind(":id",NULL);
+            if($this->db->execute()){
+                $this->db->query("SELECT LAST_INSERT_ID() as ID");
+                $last = $this->db->single();
+                foreach($res as $val){
+                    $this->db->query("INSERT INTO detail_transaksi(id_transaksi,harga,id_barang,id_pembeli,id_penjual,status) VALUES(:id_transaksi,:harga,:id_barang,:id_pembeli,:id_penjual,:status)");
+                    $this->db->bind(":id_transaksi",$last->ID);
+                    $this->db->bind(":harga",$val->harga);
+                    $this->db->bind(":id_barang",$val->id_hasilTani);
+                    $this->db->bind(":id_pembeli" ,$id);
+                    $this->db->bind(":id_penjual",$val->id_penjual);
+                    $this->db->bind(":status",0);
+                    $this->db->execute();
+                    $this->db->query("DELETE FROM keranjang WHERE id_keranjang = :id");
+                    $this->db->bind(":id",$val->id_keranjang);
+                    $this->db->execute();
+                }
+            }
+        }
+    }
+
+    public function removeCart($id){
+        $this->db->query("DELETE FROM keranjang WHERE id_keranjang = :id");
+        $this->db->bind(":id",$id);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function addCart($data){
+        $this->db->query('INSERT INTO keranjang (id_user,id_hasiltani,banyak) VALUES (:id_user,:id_hasiltani,:banyak)');
+        $this->db->bind(":id_user",$data['user_id']);
+        $this->db->bind('id_hasiltani',$data['id_barang']);
+        $this->db->bind('banyak',1);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function login($data){
         $this->db->query('SELECT * FROM user WHERE username = :username AND password_user = :password');
 

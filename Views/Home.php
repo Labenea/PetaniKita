@@ -63,7 +63,7 @@ $error = Message();
     <?php foreach($data['product'] as $res): ?>
       <?php $img = explode(",",$res->image); ?>
       <div class="col-6 col-md-4 col-lg-3 mt-2" >
-                  <a href="" class="card-prod d-block">
+                  <a href="<?php echo BASEURL."product?id_product=".$res->id_hasilTani?>"class="card-prod d-block ">
                     <div class="prod-thum">
                       <div
                         class="prod-img"
@@ -72,10 +72,10 @@ $error = Message();
                       ></div>
                     </div>
                     <div class="prod-text mt-2 ml-1">
-                      <p><?php echo $res->nama_hasil?></p>
+                      <p><?php echo $res->nama_hasil?> <span class="text-danger"><?php if($res->status_hasilTani == 1){echo 'Expired';}?></span></p>
                     </div>
                     <div class="prod-price ml-1">
-                      <p><?php echo $res->harga?>/Kg</p>
+                      <p><?php echo number_format($res->harga,0,",",".")?>/Kg</p>
                     </div>
                   </a>
         </div>

@@ -3,6 +3,7 @@ import "@fortawesome/fontawesome-free/js/fontawesome";
 import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
+import "./script/detail.js";
 import "./script/addbarang.js";
 import "./script/modal.js";
 import "./script/main.js";

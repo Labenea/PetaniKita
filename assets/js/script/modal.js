@@ -9,7 +9,8 @@ const baseurl =
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const loginbtn = document.getElementById("loginBtn");
-
+const loginForm = document.getElementById("loginForm");
+const passwordDiv = document.getElementById("password-valid");
 if (loginbtn) {
   loginbtn.addEventListener("click", (mouseEvent) => {
     login();
@@ -39,7 +40,15 @@ function login() {
     })
     .then((res) => {
       if (res.data.status == false) {
+        usernameInput.classList.add("is-invalid");
+        passwordInput.classList.add("is-invalid");
+        passwordDiv.className = "invalid-feedback";
+        passwordDiv.innerHTML = "Username/Password Salah!!!";
       } else {
+        usernameInput.classList.add("is-valid");
+        passwordInput.classList.add("is-valid");
+        passwordDiv.className = "valid-feedback";
+        passwordDiv.innerHTML = "";
         window.location.replace(baseurl);
       }
     });

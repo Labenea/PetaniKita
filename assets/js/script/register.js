@@ -9,8 +9,34 @@ const baseurl =
 const provinsi = document.querySelector("#provinsi");
 const kota = document.querySelector("#kota");
 const kec = document.querySelector("#kecamatan");
+const registerForm = document.getElementById("registerForm");
+const pass = document.getElementById("password");
+const vpass = document.getElementById("cpassword");
+
+let valid = false;
 
 if (provinsi) {
+  vpass.addEventListener("input", (ev) => {
+    if (vpass.value != pass.value) {
+      valid = false;
+      vpass.classList.remove("is-valid");
+      vpass.classList.add("is-invalid");
+    } else {
+      valid = true;
+      vpass.classList.remove("is-invalid");
+      vpass.classList.add("is-valid");
+      pass.classList.add("is-valid");
+    }
+  });
+
+  registerForm.addEventListener("submit", (ev) => {
+    if (valid) {
+      registerForm.submit();
+    } else {
+      ev.preventDefault();
+    }
+  });
+
   if (provinsi) {
     axios.post(`${baseurl}wilayah`).then((res) => {
       res.data.forEach((dat) => {

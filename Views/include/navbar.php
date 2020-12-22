@@ -7,14 +7,14 @@
 
     <div class="collapse navbar-collapse" id="navbarsExample04">
       <div class="row justify-content-between mr-auto ml-auto w-100">
-        <div class="col-md-6 d-flex align-items-center mt-2 mb-2 ">
+          <form class="col-md-6 d-flex align-items-center mt-2 mb-2 " action="<?php echo BASEURL?>search" method="get">
           <div class="input-group input-group-sm ">
-            <input type="text" class="form-control" placeholder="Search Products" aria-describedby="button-addon2" />
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+            <input type="text" class="form-control" name="keyword" placeholder="Search Products" aria-describedby="button-addon2" />
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
               Search
             </button>
           </div>
-        </div>
+          </form>
         <?php if (!isLogedIn()) : ?>
           <ul class="navbar-nav col-md justify-content-end mb-2 mb-md-0 pr-0">
             <li class="nav-item d-grid gap-2 d-md-block ml-2 mt-2 mb-2">
@@ -26,6 +26,18 @@
           </ul>
         <?php else : ?>
           <ul class="navbar-nav col-md justify-content-end mb-2 mb-md-0 pr-0">
+          <li class="nav-item  pr-3 mt-auto mb-auto">
+              <a href="<?php echo BASEURL?>cart" class="text-dark position-relative" >
+              <i class="fs-5 fas fa-bell"></i>
+              <span id="notif" class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger ">0</span>
+              </a>
+            </li>
+            <li class="nav-item pr-3 mt-auto mb-auto">
+              <a href="<?php echo BASEURL?>cart" class="text-dark position-relative" >
+              <i class="fs-5  fas fa-shopping-basket"></i>
+              <span id="shop-notif" class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger "></span>
+              </a>
+            </li>
             <li class="nav-item ml-2 mt-auto dropdown  mb-auto">
               <button class="nav-link d-flex btn btn-outline-light " id="profileBtn" data-bs-toggle="dropdown">
                 <img src="<?php echo BASEURL ?>assets/img/account.svg" alt="">
@@ -34,7 +46,8 @@
 
               </button>
               <ul class="dropdown-menu dropdown-menu-right " style="margin-top: 14px;" aria-labelledby="profileBtn">
-              <li><a class="dropdown-item py-2 pl-3" href="<?php echo URLROOT ?>user/add/product">Tambah Barang</a></li>
+              <li><a class="dropdown-item py-2 pl-3" href="<?php echo URLROOT ?>user/product">Barang Saya</a></li>
+              <li><a class="dropdown-item py-2 pl-3" href="<?php echo URLROOT ?>user/pesanan">Pesanan Saya</a></li>
               <li><a class="dropdown-item py-2 pl-3" href="<?php echo URLROOT ?>profile">Profile</a></li>
                 <li><a class="dropdown-item py-2 pl-3" href="<?php echo URLROOT ?>logout">Logout</a></li>
               </ul>
@@ -64,7 +77,7 @@
           </div>
           <div class="row justify-content-center">
             <div class="col-11 ">
-              <form action="" method="post">
+              <form class="needs-validation" id="loginForm" action="" method="post" novalidate>
                 <div class="mt-3">
                   <label class="form-label fw-bold" for="username">Username</label>
                   <input class='form-control ' type="text" name="username" id="username">
@@ -72,6 +85,8 @@
                 <div class="mt-3">
                   <label class="form-label fw-bold" for="password">Password</label>
                   <input class='form-control ' type="password" name="password" id="password">
+                  <div id="password-valid" class="">
+                  </div>
                 </div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                   <button class="btn btn-primary" id="loginBtn" type="button">Login</button>

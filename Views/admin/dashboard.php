@@ -14,7 +14,7 @@ include(APPROOT . '/Views/include/header.php');
                             <div class="container-fluid">
                             <div class="row align-items-center">
                                 <div class="col admin-text">
-                                    <h3>20.000</h3>
+                                    <h3>1</h3>
                                     <h5>Users</h5>
                                 </div>
                                 <div class="col-auto px-0">
@@ -31,12 +31,12 @@ include(APPROOT . '/Views/include/header.php');
                             <div class="container-fluid">
                             <div class="row align-items-center">
                                 <div class="col admin-text">
-                                    <h3>20.000</h3>
-                                    <h5>Users</h5>
+                                    <h3>2</h3>
+                                    <h5>Transaksi</h5>
                                 </div>
                                 <div class="col-auto px-0">
                                     <div class="admin-icon fs-5">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-receipt"></i>
                                     </div>
                                 </div>
                             </div>
@@ -48,12 +48,12 @@ include(APPROOT . '/Views/include/header.php');
                             <div class="container-fluid">
                             <div class="row align-items-center">
                                 <div class="col admin-text">
-                                    <h3>20.000</h3>
-                                    <h5>Users</h5>
+                                    <h3>3</h3>
+                                    <h5>Barang</h5>
                                 </div>
                                 <div class="col-auto px-0">
                                     <div class="admin-icon fs-5">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-box-open"></i>
                                     </div>
                                 </div>
                             </div>

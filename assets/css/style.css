@@ -8232,6 +8232,18 @@ textarea.form-control-lg {
 
   .d-print-none {
     display: none !important; } }
+nav #shop-notif {
+  font-size: 8px; }
+nav #notif {
+  font-size: 8px; }
+nav .circle-badge {
+  margin-left: -10px;
+  line-height: normal;
+  display: inline-block;
+  font-size: 10px;
+  min-width: 2em;
+  padding: 0.2em;
+  border-radius: 50%; }
 nav .register {
   font-family: "Montserrat", sans-serif;
   border: 1px solid #169e38;
@@ -8344,7 +8356,7 @@ nav .green {
 #changeNameModal .modal-title {
   color: #e9ecef; }
 
-.carousel-inner img {
+#carouselHome .carousel-inner img {
   max-height: 29vw;
   object-fit: cover; }
 
@@ -8391,6 +8403,8 @@ nav .green {
   font-size: 18px; }
   #home .prod-text p {
     margin-bottom: 0; }
+#home .card-prod {
+  border-radius: 10px; }
 #home .prod-price {
   color: #fd7e14;
   font-size: 18px; }
@@ -8488,5 +8502,28 @@ nav .green {
   width: 200px; }
   .img-upload:hover {
     cursor: pointer; }
+
+#detail .carousel-inner img {
+  height: 350px;
+  object-fit: cover; }
+  @media screen and (max-width: 560px) {
+    #detail .carousel-inner img {
+      height: 200px; } }
+#detail .indicator li {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100px;
+  width: 100px; }
+  #detail .indicator li:hover {
+    cursor: pointer; }
+  #detail .indicator li.active {
+    border: solid 2px #479f76; }
+
+.cart-img {
+  width: 216px;
+  height: 120px;
+  border-radius: 5px;
+  object-fit: cover; }
 
 /*# sourceMappingURL=style.css.map */

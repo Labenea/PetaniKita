@@ -3,20 +3,19 @@ require(APPROOT . "/Views/include/header.php");
 $error = Message();
 ?>
 
-<?php if ($error != null) : ?>
-    <div class="container-fluid" style="max-width:90%;">
+<div class="container-fluid regist">
+    <div class="row mt-5 mb-5 justify-content-center">
+        <div class="col col-lg-10 col-md-12">
+            <div class="card">
+                <div class="card-body p-5">
+                <?php if ($error != null) : ?>
+    <div class="container-fluid" style="">
         <div class="alert alert-danger" role="alert">
             <?php echo $error; ?>
         </div>
     </div>
 
 <?php endif ?>
-
-<div class="container-fluid regist">
-    <div class="row mt-5 mb-5 justify-content-center">
-        <div class="col col-lg-10 col-md-12">
-            <div class="card">
-                <div class="card-body p-5">
                     <div class="row justify-content-center">
                         <a href="<?php echo BASEURL ?>">
                             <h1 class="title col-12 mt-1">
@@ -26,7 +25,7 @@ $error = Message();
                     </div>
                     <div class="row">
                         <div class="col-md-7">
-                            <form class="row justify-content-center" action="<?php echo BASEURL ?>register" method="post">
+                            <form id="registerForm" class="row justify-content-center" action="<?php echo BASEURL ?>register" method="post">
                                 <div class="col-12 ">
                                     <div class="row mb-3">
                                         <label for="name" class="form-label">Nama</label>

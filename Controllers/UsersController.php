@@ -224,6 +224,91 @@ class UsersController extends Controller{
         
     }
 
+    public function cartCount(){
+        if(!isLogedIn()){   
+            return header('location: '.URLROOT.'');
+        }
+        $data = $this->userModel->getCartCount($_SESSION['user_id']);
+        echo json_encode($data);
+    }
+
+    public function removeCart(){
+        if(!isLogedIn()){   
+            return header('location: '.URLROOT.'');
+        }
+        if($_SERVER["REQUEST_METHOD"] == "GET"){
+            $id = $_GET['id_keranjang'];
+            if($this->userModel->removeCart($id)){
+                return header('location: '.URLROOT.'cart');
+            }
+        }
+    }
+
+    public function userProduct(){
+        if(!isLogedIn()){   
+            return header('location: '.URLROOT.'');
+        }
+        if($data = $this->userModel->userProduct($_SESSION['user_id'])){
+            $this->CreateView('user/product',$data);
+        }
+    }
+
+    public function userPesanan(){
+        if(!isLogedIn()){   
+            return header('location: '.URLROOT.'');
+        }
+        if($data = $this->userModel->userPesanan($_SESSION['user_id'])){
+            $this->CreateView('user/pesanan',$data);
+        }
+    }
+
+    public function checkOut(){
+        if(!isLogedIn()){   
+            return header('location: '.URLROOT.'');
+        }
+        if($this->userModel->checkOut($_SESSION['user_id'])){
+
+        }
+    }
+
+    public function cart(){
+        if(!isLogedIn()){   
+            return header('location: '.URLROOT.'');
+        }
+        if($data = $this->userModel->getCart($_SESSION['user_id'])){
+            $this->CreateView('user/cart',$data);
+        }else{
+            $this->CreateView('user/cart');
+        }
+
+
+    }
+
+    public function addCart(){
+        if(!isLogedIn()){   
+            return header('location: '.URLROOT.'');
+        }
+        $post = json_decode(file_get_contents('php://input'), true);
+        if(isset($post)){
+            $data= [
+                'id_barang' => $post['id_barang'],
+                'user_id' => $_SESSION['user_id'],
+            ];
+            $check = $this->userModel->checkDuplicate($data);
+            if($check){
+                $data['id_keranjang'] = $check->id_keranjang;
+                if($this->userModel->updateCart($data)){
+                    echo true;
+                }
+            }else{
+                if($this->userModel->addCart($data)){
+                    echo true;
+                }
+                
+            }
+        }
+    }
+
     public function validate(){
 
 

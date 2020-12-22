@@ -4,6 +4,21 @@ $font-family-base: $font-open-sans !default;
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 nav {
+  #shop-notif {
+    font-size: 8px;
+  }
+  #notif {
+    font-size: 8px;
+  }
+  .circle-badge {
+    margin-left: -10px;
+    line-height: normal;
+    display: inline-block;
+    font-size: 10px;
+    min-width: 2em;
+    padding: 0.2em;
+    border-radius: 50%;
+  }
   .register {
     &:hover {
       border: 1px solid $green-1;
@@ -158,10 +173,12 @@ nav {
   }
 }
 
-.carousel-inner {
-  img {
-    max-height: 29vw;
-    object-fit: cover;
+#carouselHome {
+  .carousel-inner {
+    img {
+      max-height: 29vw;
+      object-fit: cover;
+    }
   }
 }
 
@@ -221,6 +238,9 @@ nav {
     p {
       margin-bottom: 0;
     }
+  }
+  .card-prod {
+    border-radius: 10px;
   }
   .prod-price {
     color: $orange-500;
@@ -341,4 +361,37 @@ nav {
   }
   height: 200px;
   width: 200px;
+}
+#detail {
+  .carousel-inner {
+    img {
+      height: 350px;
+      object-fit: cover;
+      @include mq(560px) {
+        height: 200px;
+      }
+    }
+  }
+  .indicator {
+    li {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      &:hover {
+        cursor: pointer;
+      }
+      height: 100px;
+      width: 100px;
+      &.active {
+        border: solid 2px $green-400;
+      }
+    }
+  }
+}
+
+.cart-img {
+  width: 216px;
+  height: 120px;
+  border-radius: 5px;
+  object-fit: cover;
 }

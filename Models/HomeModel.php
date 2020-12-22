@@ -2,6 +2,7 @@
 class HomeModel{
     private $db;
 
+
     public function __construct(){
         $this->db = new Database;
     }
@@ -19,9 +20,20 @@ class HomeModel{
     }
 
     public function getProduct(){
-        $this->db->query("SELECT * FROM hasil_tani");
+        $this->db->query("SELECT * FROM hasil_tani LIMIT 10");
         $row = $this->db->resultSet();
         return $row;
     }
 
+    public function searchProduct($keywords){
+        $this->db->query("SELECT * FROM hasil_tani WHERE nama_hasil LIKE :keyword");
+        $this->db->bind(':keyword',"%".$keywords."%");
+        $row = $this->db->resultSet();
+        return $row;
+    }
+
+    public function checkKadaluarsa(){
+        $this->db->query("UPDATE hasil_tani SET status_hasilTani = 1 WHERE kadaluarsa_hasilTani < CURRENT_DATE");
+        $this->db->execute();
+    }
 }
