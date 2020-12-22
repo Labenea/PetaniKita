@@ -32,6 +32,13 @@ class HomeModel{
         return $row;
     }
 
+    public function searchKategori($id){
+        $this->db->query("SELECT * FROM hasil_tani WHERE jenis_hasilTani = :id");
+        $this->db->bind(':id',$id);
+        $row = $this->db->resultSet();
+        return $row;
+    }
+
     public function checkKadaluarsa(){
         $this->db->query("UPDATE hasil_tani SET status_hasilTani = 1 WHERE kadaluarsa_hasilTani < CURRENT_DATE");
         $this->db->execute();

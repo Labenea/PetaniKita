@@ -21,6 +21,16 @@ class HomeController extends Controller{
                 $data['product'] = $res;
                 return $this->CreateView("Search",$data);
             }
+        }elseif(isset($_GET['kategori'])){
+            $kategori = $_GET['kategori'];
+            $res = $this->HomeModel->searchKategori($kategori);
+            if(empty($res)){
+                $data["message"] = $res;
+                return $this->CreateView("Search",$data);
+            }else{
+                $data['product'] = $res;
+                return $this->CreateView("Search",$data);
+            }
         }
         $this->HomeModel->checkKadaluarsa();
         $carousel = $this->HomeModel->getCarousel();

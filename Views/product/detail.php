@@ -76,8 +76,8 @@ setlocale(LC_MONETARY, "id_ID");
             </div>
             <div class="pl-md-4 pt-4">
                 <div class="d-grid gap-2 d-md-block">
-                    <button id="addKeranjang" <?php if(!isLogedIn() || $data['res']->status_hasilTani == 1){echo 'disabled';}?> class="btn btn-primary" type="button">Masukan Keranjang</button>
-                    <button id="beliBarang" <?php if(!isLogedIn() ||  $data['res']->status_hasilTani == 1){echo 'disabled';}?> class="btn btn-green" type="button">Beli Sekarang</button>
+                    <button id="addKeranjang" <?php if(!isLogedIn() || $data['res']->status_hasilTani == 1 || $data['res']->id_user == $_SESSION['user_id']){echo 'disabled';}?> class="btn btn-primary" type="button">Masukan Keranjang</button>
+                    <button id="beliBarang" <?php if(!isLogedIn() ||  $data['res']->status_hasilTani == 1 || $data['res']->id_user == $_SESSION['user_id']){echo 'disabled';}?> class="btn btn-green" type="button">Beli Sekarang</button>
                 </div>
             </div>
         </div>

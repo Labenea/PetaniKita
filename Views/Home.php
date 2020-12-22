@@ -44,7 +44,7 @@ $error = Message();
   <div class="row mt-3">
     <?php foreach ($data['categories'] as $k => $val) : ?>
       <div class="col-6 col-md-3 col-lg  mt-2 mt-md-0">
-        <a class="card-cat d-block" href="">
+        <a class="card-cat d-block" href="<?php echo BASEURL."search?kategori=".$val->id_jenis_ht?>">
           <div class="img-card">
             <img class="w-100" src="<?php echo BASEURL ?>assets/img/icons/<?php echo $val->img ?>" alt="">
           </div>

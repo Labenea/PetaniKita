@@ -10,9 +10,11 @@ $error = Message();
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php endif ?>
+    <?php if(isset($_GET['keyword'])):?>
    <p class="mt-5 small text-muted">
        Menampilkan hasil untuk : <?php echo $_GET['keyword']?>
    </p>
+   <?php endif?>
     <div class="row mt-3">
         <?php if(isset($data['product'])):?>
         <?php foreach ($data['product'] as $res) : ?>
